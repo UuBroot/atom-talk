@@ -1,0 +1,55 @@
+/*************
+*   Variables *
+*************/
+:root {
+/*dark*/
+    --backgroundColor: rgb(97, 97, 97);
+    --mainColor1: rgb(61, 61, 61);
+    --mainColor2: rgb(95, 95, 95);
+    --colorScheme: dark;
+    --font: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+/**********
+*   Basics *
+**********/
+html {
+    color-scheme: var(--colorScheme);
+    font-family: var(--font);
+    
+}
+body {
+    background-color: var(--backgroundColor);
+    margin: 0px;
+    padding: 0px;
+}
+/*Mains*/
+#main-roomSelection {
+    width: 100px;
+    height: 99.5vh;
+    background-color: var(--mainColor1);
+
+    display: grid;
+    justify-content: center;
+
+    overflow-y: scroll;
+}
+
+
+
+#server-icon {
+    border-radius: 70px;
+    background-color: black;
+    width: 50px;
+    height: 50px;
+    transition: all 0.4s;
+    margin-bottom: 3%;
+}
+#server-icon:hover {
+    border-radius: 10px;
+}
+/********************
+*   Responsiveness  *
+********************/
+@media screen and (max-width: 800px) {
+
+}
