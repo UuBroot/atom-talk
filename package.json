@@ -1,0 +1,18 @@
+{
+  "name": "atom-talk",
+  "version": "1.0.0",
+  "description": "A matrix based chatting application.",
+  "main": "main.js",
+  "author": "Timon Rosenbichler",
+  "license": "GPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/UuBroot/atom-talk/issues"
+  },
+  "scripts": {
+    "start": "electron ."
+  },
+  "devDependencies": {
+    "@electron-forge/cli": "^6.0.5",
+    "electron": "^23.2.0"
+  }
+}
