@@ -1,18 +1,24 @@
 {
   "name": "atom-talk",
   "version": "1.0.0",
-  "description": "A matrix based chatting application.",
+  "description": "A matrix chatting client.",
   "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://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@github.com/UuBroot/atom-talk.git"
+  },
   "author": "Timon Rosenbichler",
   "license": "GPL-3.0-or-later",
   "bugs": {
     "url": "https://github.com/UuBroot/atom-talk/issues"
   },
-  "scripts": {
-    "start": "electron ."
-  },
-  "devDependencies": {
-    "@electron-forge/cli": "^6.0.5",
-    "electron": "^23.2.0"
+  "homepage": "https://github.com/UuBroot/atom-talk#readme",
+  "dependencies": {
+    "electron": "^23.2.1",
+    "matrix-js-sdk": "^24.0.0"
   }
 }
