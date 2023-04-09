@@ -1,42 +1,81 @@
-const { app, BrowserWindow } = require("electron");
-const path = require("path");
-const fs = require('fs').promises;
+const {
+  app,
+  BrowserWindow,
+  ipcMain
+} = require("electron");
 
-const loadMainWindow = () => {
-    const mainWindow = new BrowserWindow({
-        width : 1200,
-        height: 800,
-        webPreferences: {
-            nodeIntegration: true
-        }
-    });
-    readData();
-    mainWindow.loadFile(path.join(__dirname, "./app/pages/index.html"));
+const path = require("path");
+const fs = require("fs");
+
+// Keep a global reference of the window object, if you don't, the window will
+// be closed automatically when the JavaScript object is garbage collected.
+let win
+
+function createWindow () {
+  // Create the browser window.
+  win = new BrowserWindow({ 
+    width: 800,
+    height: 600,
+    webPreferences: {
+      nodeIntegration: true,
+      contextIsolation: false
+    }
+  
+  })
+
+  // and load the index.html of the app.
+  win.loadFile('./app/pages/index.html')
+
+  // Open the DevTools.
+  win.webContents.openDevTools()
+
+  // Emitted when the window is closed.
+  win.on('closed', () => {
+    // Dereference the window object, usually you would store windows
+    // in an array if your app supports multi windows, this is the time
+    // when you should delete the corresponding element.
+    win = null
+  })
 }
 
-app.on("ready", loadMainWindow);
+// This method will be called when Electron has finished
+// initialization and is ready to create browser windows.
+// Some APIs can only be used after this event occurs.
+app.on('ready', createWindow)
 
-app.on("window-all-closed", () => {
-    //Checks if the user is using macOS
-    if (process.platform !== "darwin") {
-      app.quit();
+// Quit when all windows are closed.
+app.on('window-all-closed', () => {
+    // On macOS it is common for applications and their menu bar
+    // to stay active until the user quits explicitly with Cmd + Q
+    if (process.platform !== 'darwin') {
+      app.quit()
     }
-  });
+})
 
-app.on("activate", () => {
-    if (BrowserWindow.getAllWindows().length === 0) {
-        loadMainWindow();
+app.on('activate', () => {
+    // On macOS it's common to re-create a window in the app when the
+    // dock icon is clicked and there are no other windows open.
+    if (win === null) {
+      createWindow()
     }
-});
+  })
+
+/*****************************************************************
+*                                                                *
+*   This is for Passing the data.json file to the window process *
+*                                                                *
+******************************************************************/
 
 
 //File System
-function readData() {
-    fs.readFile(path.join(__dirname, "./data/data.json"), "utf8", (err, data) => {
-        if (err) {
-            console.log(err);
-        } else {
-            console.log(data);
-        }
-    });
+
+ipcMain.on('readFile', event => {
+  event.sender.send('readFileOutput', readFile())
+})
+
+function readFile() {
+  fs.readFile('./data/data.json', 'utf-8', (err, data)=> {
+    console.log(data);
+    return data;
+  })
 }

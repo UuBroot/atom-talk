@@ -1,8 +1,10 @@
+const { ipcRenderer } = require('electron');
+
 let roomSelection = document.getElementById("main-roomSelection");
 let text_chanals = document.getElementById("main-text-chanals");
 let text_chanal = document.getElementById("main-text-chanal");
 
-
+/*
 //Testing
 for(let i = 0;i<100;i++){
     roomSelection.innerHTML += `
@@ -27,3 +29,10 @@ for(let i = 0;i<100;i++){
         </div>
     `;
 }
+*/
+
+ipcRenderer.send('readFile');
+
+ipcRenderer.on('readFileOutput', (event, arg) => {
+    console.log("test: "+ arg);
+});
