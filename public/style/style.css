@@ -1,0 +1,105 @@
+/*************
+*   Variables *
+*************/
+:root {
+/*dark*/
+    --appHeight: 100vh;
+    --backgroundColor: rgb(97, 97, 97);
+    --borderColor: rgb(61, 61, 61);
+    --mainColor2: rgb(95, 95, 95);
+    --colorScheme: dark;
+    --font: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+/**********
+*   Basics *
+**********/
+html {
+    color-scheme: var(--colorScheme);
+    font-family: var(--font);
+    overflow-y: hidden;
+}
+body {
+    background-color: var(--backgroundColor);
+    margin: 0px;
+    padding: 0px;
+
+    display: grid;
+    grid-template-columns: 5% 25% 30% 40%;
+}
+p {
+    padding: 0px;
+    margin: 0px;
+}
+/*Mains*/
+#main-roomSelection {
+    width: 100%;
+    height: var(--appHeight);
+    background-color: var(--borderColor);
+
+    display: grid;
+    justify-content: center;
+
+    overflow-y: scroll;
+}
+
+#main-text-chanals {
+    height: var(--appHeight);
+    overflow-y: scroll;
+    background-color: var(--backgroundColor);
+    border-right: 10px var(--borderColor) solid;
+}
+
+#main-text-chanals-chanal {
+    display: flex;
+    align-items: center;
+    margin-top: 1vw;
+    margin-bottom: 1vw;
+    background-color: var(--backgroundColor);
+    height: 50px;
+
+    border: 5px rgb(168, 168, 168) solid;
+}
+
+#main-text-chanal {
+    height: 40px;
+    height: var(--appHeight);
+    background-color: var(--backgroundColor);
+    border-right: 10px var(--borderColor) solid;
+    overflow-y: scroll;
+}
+
+#main-voice {
+    height: var(--appHeight);
+    overflow-y: scroll;
+    background-color: var(--backgroundColor);
+}
+
+#server-icon {
+    border-radius: 40px;
+    background-color: black;
+    width: 50px;
+    height: 50px;
+    transition: all 0.3s;
+    margin-top: 15%;
+    margin-bottom: 15%;
+}
+#server-icon:hover {
+    border-radius: 10px;
+}
+
+.message  {
+    padding: 1vw;
+    background-color: rgb(133, 133, 133);
+    display: flex;
+    margin-top: 10px;
+}
+.text-userPic {
+ width: 50px;
+ height: 50px;   
+}
+/********************
+*   Responsiveness  *
+********************/
+@media screen and (max-width: 800px) {
+
+}

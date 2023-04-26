@@ -1,0 +1,21 @@
+{
+  "name": "atom-talk",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "electron ." ,
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "Internet",
+    "SocialMedia",
+    "Talk"
+  ],
+  "author": "UuBroot",
+  "license": "SEE LICENSE IN LICENSE",
+  "devDependencies": {
+    "electron": "^24.1.2",
+    "typescript": "^5.0.4"
+  }
+}
