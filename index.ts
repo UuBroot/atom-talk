@@ -61,4 +61,3 @@ app.on('activate', () => {
 *   This is for Passing the data.json file to the window process *
 *                                                                *
 ******************************************************************/
-
