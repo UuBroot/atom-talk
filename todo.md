@@ -1,1 +1,0 @@
-TODO: Use TypeScript instead of JavaScript
