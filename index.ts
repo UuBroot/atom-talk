@@ -3,61 +3,74 @@ const path = require('path')
 const url = require('url')
 const fs = require("fs");
 
-// Keep a global reference of the window object, if you don't, the window will
-// be closed automatically when the JavaScript object is garbage collected.
-let win
+/////////////
+//Variables//
+/////////////
 
-function createWindow () {
-  // Create the browser window.
-  win = new BrowserWindow({ 
-    width: 800,
-    height: 600,
-    webPreferences: {
-      nodeIntegration: true,
-      contextIsolation: false
-    }
+//UserData
+let currentUserData = {
+  "change_time":"",
+  "Userdata":[
+      {
+          "IPAdress":"4",
+          "UserID":"sfd",
+          "Username":"3"
+      }
+  ]
+};
+
+//Window
+let win;
+
+//////////
+//Window//
+//////////
+app.on('ready', () => {
+  (async() => {
+    updateUserData()
+
+    win = new BrowserWindow({ width: 800, height: 600 })
   
-  })
+    if (checkUserData()){
+      console.log("everything is already prepared")
+      win.loadFile('./public/pages/index.html');
+    }
+    else {
+      console.log("no user has been created")
+      win.loadFile('./public/pages/login.html')
+    }
+  })()
 
-  // and load the index.html of the app.
-  win.loadFile('./public/pages/index.html')
+});
 
-  // Open the DevTools.
-  win.webContents.openDevTools()
+//////////////////
+//UserData Thing//
+/////////////////
+function checkUserData() {
 
-  // Emitted when the window is closed.
-  win.on('closed', () => {
-    // Dereference the window object, usually you would store windows
-    // in an array if your app supports multi windows, this is the time
-    // when you should delete the corresponding element.
-    win = null
-  })
+  console.log("hting:",currentUserData)
+
+    if(currentUserData.Userdata[0].Username == "" || currentUserData.Userdata[0].IPAdress == "" || currentUserData.Userdata[0].UserID == ""){
+      return false;
+    }
+    else {
+      return true;
+    }
+
 }
 
-// This method will be called when Electron has finished
-// initialization and is ready to create browser windows.
-// Some APIs can only be used after this event occurs.
-app.on('ready', createWindow)
-
-// Quit when all windows are closed.
-app.on('window-all-closed', () => {
-    // On macOS it is common for applications and their menu bar
-    // to stay active until the user quits explicitly with Cmd + Q
-    if (process.platform !== 'darwin') {
-      app.quit()
+function updateUserData() {
+  fs.readFile('./data/userdata.json', 'utf8', (err, data) => {
+    if (err) {
+      console.log(err)
+      return;
     }
-})
-
-app.on('activate', () => {
-    // On macOS it's common to re-create a window in the app when the
-    // dock icon is clicked and there are no other windows open.
-    if (win === null) {
-      createWindow()
-    }
-  })
-  
-/*****************************************************************
-*                                                                *
-*   This is for Passing the data.json file to the window process *
-*                                                                *
-******************************************************************/
+    currentUserData = data;
+  });
+}
+//////////////
+//Intervalls//
+//////////////
+setInterval (function () {
+  updateUserData()
+},1000)
