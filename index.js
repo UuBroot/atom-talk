@@ -47,9 +47,9 @@ var currentUserData = {
     "change_time": "",
     "Userdata": [
         {
-            "IPAdress": "4",
-            "UserID": "sfd",
-            "Username": "3"
+            "IPAdress": "",
+            "UserID": "",
+            "Username": ""
         }
     ]
 };
