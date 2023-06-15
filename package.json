@@ -15,10 +15,13 @@
   "author": "UuBroot",
   "license": "SEE LICENSE IN LICENSE",
   "devDependencies": {
-    "electron": "^24.1.3",
-    "typescript": "^5.0.4"
+    "electron": "^24.5.1",
+    "typescript": "^5.1.3"
   },
-  "engines" : { 
-    "node" : "18"
+  "engines": {
+    "node": "18"
+  },
+  "dependencies": {
+    "gun": "^0.2020.1239"
   }
 }
